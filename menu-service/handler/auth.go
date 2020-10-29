@@ -5,8 +5,8 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/arfandidts/dts-be-pengenalan-microservice/menu-service/config"
-	"github.com/arfandidts/dts-be-pengenalan-microservice/utils"
+	"github.com/arfandidts/dts-be-pendalaman-microservice/menu-service/config"
+	"github.com/arfandidts/dts-be-pendalaman-microservice/utils"
 )
 
 type AuthMiddleware struct {
