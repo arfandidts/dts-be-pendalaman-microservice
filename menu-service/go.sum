@@ -1,5 +1,3 @@
-github.com/arfandidts/dts-be-pengenalan-microservice v0.0.0-20201029115242-018bb36b2d05 h1:uirQUTVo1bQXZt7Q+P1cJivmAPAQsQfda7Vw0mwT8ic=
-github.com/arfandidts/dts-be-pengenalan-microservice v0.0.0-20201029115242-018bb36b2d05/go.mod h1:pb/7Nrh7Ge5LF+aShieBFUtlRRNK82H+I41fjhpmQVA=
 github.com/go-sql-driver/mysql v1.5.0 h1:ozyZYNQW3x3HtqT1jira07DN2PArx2v7/mN66gGcHOs=
 github.com/go-sql-driver/mysql v1.5.0/go.mod h1:DCzpHaOWr8IXmIStZouvnhqoel9Qv2LBy8hT2VhHyBg=
 github.com/gorilla/mux v1.8.0 h1:i40aqfkR1h2SlN9hojwV5ZA91wcXFOvkdNIeFDP5koI=

@@ -5,9 +5,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/arfandidts/dts-be-pengenalan-microservice/menu-service/config"
-	"github.com/arfandidts/dts-be-pengenalan-microservice/menu-service/database"
-	"github.com/arfandidts/dts-be-pengenalan-microservice/menu-service/handler"
+	"github.com/arfandidts/dts-be-pendalaman-microservice/menu-service/config"
+	"github.com/arfandidts/dts-be-pendalaman-microservice/menu-service/database"
+	"github.com/arfandidts/dts-be-pendalaman-microservice/menu-service/handler"
 	"github.com/gorilla/mux"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"

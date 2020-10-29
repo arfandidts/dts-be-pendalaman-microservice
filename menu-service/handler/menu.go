@@ -5,8 +5,8 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/arfandidts/dts-be-pengenalan-microservice/menu-service/database"
-	"github.com/arfandidts/dts-be-pengenalan-microservice/utils"
+	"github.com/arfandidts/dts-be-pendalaman-microservice/menu-service/database"
+	"github.com/arfandidts/dts-be-pendalaman-microservice/utils"
 	"gorm.io/gorm"
 )
 
