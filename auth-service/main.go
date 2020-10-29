@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/arfandidts/dts-be-pengenalan-microservice/auth-service/handler"
+	"github.com/arfandidts/dts-be-pendalaman-microservice/auth-service/handler"
 	"github.com/gorilla/mux"
 )
 

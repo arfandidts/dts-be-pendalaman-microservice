@@ -3,7 +3,7 @@ package handler
 import (
 	"net/http"
 
-	"github.com/arfandidts/dts-be-pengenalan-microservice/utils"
+	"github.com/arfandidts/dts-be-pendalaman-microservice/utils"
 )
 
 func ValidateAuth(w http.ResponseWriter, r *http.Request) {
