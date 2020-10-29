@@ -9,13 +9,23 @@ import (
 	"github.com/arfandidts/dts-be-pendalaman-microservice/auth-service/handler"
 	"github.com/gorilla/mux"
 	"github.com/spf13/viper"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
 func main() {
-	if cfg, err := getConfig(); err != nil {
+	cfg, err := getConfig()
+	if err != nil {
 		log.Println(err.Error())
 	} else {
 		log.Println(cfg)
+	}
+
+	_, err = initDB(cfg.Database)
+	if err != nil {
+		log.Println(err.Error())
+	} else {
+		log.Println("DB connection success")
 	}
 
 	router := mux.NewRouter()
@@ -42,4 +52,21 @@ func getConfig() (config.Config, error) {
 	}
 
 	return cfg, nil
+}
+
+func initDB(dbConfig config.Database) (*gorm.DB, error) {
+	// root:password@tcp(localhost:3306)/dts_microservice_auth?charset=utf8&parseTime=True&loc=Local
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?%s", dbConfig.User, dbConfig.Password, dbConfig.Host, dbConfig.Port, dbConfig.DbName, dbConfig.Config)
+	log.Println(dsn)
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	if err != nil {
+		return nil, err
+	}
+
+	// err = db.AutoMigrate(&database.Menu{})
+	// if err != nil {
+	// 	return nil, err
+	// }
+
+	return db, nil
 }
