@@ -5,7 +5,10 @@ import (
 	"io/ioutil"
 	"net/http"
 
+	"github.com/gorilla/context"
+
 	"github.com/arfandidts/dts-be-pendalaman-microservice/menu-service/config"
+	"github.com/arfandidts/dts-be-pendalaman-microservice/menu-service/entity"
 	"github.com/arfandidts/dts-be-pendalaman-microservice/utils"
 )
 
@@ -36,13 +39,16 @@ func (auth *AuthMiddleware) ValidateAuth(nextHandler http.HandlerFunc) http.Hand
 			return
 		}
 
-		var authResult map[string]interface{}
+		var authResult entity.AuthResponse
 		err = json.Unmarshal(body, &authResult)
 
 		if authResponse.StatusCode != 200 {
-			utils.WrapAPIError(w, r, authResult["error_details"].(string), authResponse.StatusCode)
+			utils.WrapAPIError(w, r, authResult.ErrorDetails, authResponse.StatusCode)
 			return
 		}
+
+		// untuk menyimpan user ke handler selanjutnya
+		context.Set(r, "user", authResult.Data.Username)
 
 		nextHandler(w, r)
 	}

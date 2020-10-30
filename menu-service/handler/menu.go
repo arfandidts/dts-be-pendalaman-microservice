@@ -2,11 +2,13 @@ package handler
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
 	"github.com/arfandidts/dts-be-pendalaman-microservice/menu-service/database"
 	"github.com/arfandidts/dts-be-pendalaman-microservice/utils"
+	"github.com/gorilla/context"
 	"gorm.io/gorm"
 )
 
@@ -27,12 +29,17 @@ func (handler *Menu) AddMenu(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// mengambil data yang dikirim dari handler sebelumnya
+	username := context.Get(r, "user")
+
 	var menu database.Menu
 	err = json.Unmarshal(body, &menu)
 	if err != nil {
 		utils.WrapAPIError(w, r, "error unmarshal : "+err.Error(), http.StatusInternalServerError)
 		return
 	}
+
+	menu.Username = fmt.Sprintf("%v", username)
 
 	err = menu.Insert(handler.Db)
 	if err != nil {

@@ -7,9 +7,10 @@ import (
 )
 
 type Menu struct {
-	ID    string `json:"id" gorm:"primary_key"`
-	Name  string `json:"menu_name"`
-	Price int    `json:"price"`
+	ID       string `json:"id" gorm:"primary_key"`
+	Username string `json:"username"`
+	Name     string `json:"menu_name"`
+	Price    int    `json:"price"`
 }
 
 func (menu *Menu) Insert(db *gorm.DB) error {
