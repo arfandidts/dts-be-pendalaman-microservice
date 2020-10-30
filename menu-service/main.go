@@ -9,27 +9,19 @@ import (
 	"github.com/arfandidts/dts-be-pendalaman-microservice/menu-service/database"
 	"github.com/arfandidts/dts-be-pendalaman-microservice/menu-service/handler"
 	"github.com/gorilla/mux"
+	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
 func main() {
-	con := config.Config{
-		Database: config.Database{
-			Driver:   "mysql",
-			Host:     "localhost",
-			Port:     "3306",
-			User:     "root",
-			Password: "",
-			DbName:   "dts_microservice",
-			Config:   "charset=utf8&parseTime=True&loc=Local",
-		},
-		AuthService: config.AuthService{
-			Host: "http://localhost:5001",
-		},
+	cfg, err := getConfig()
+	if err != nil {
+		log.Panic(err)
+		return
 	}
 
-	db, err := initDB(con.Database)
+	db, err := initDB(cfg.Database)
 	if err != nil {
 		log.Panic(err)
 		return
@@ -38,19 +30,36 @@ func main() {
 	router := mux.NewRouter()
 
 	authMiddleware := handler.AuthMiddleware{
-		AuthService: con.AuthService,
+		AuthService: cfg.AuthService,
 	}
 
 	menuHandler := handler.Menu{
 		Db: db,
 	}
 
-	// router.Handle("/add-menu", http.HandlerFunc(menuHandler.AddMenu))
 	router.Handle("/add-menu", authMiddleware.ValidateAuth(http.HandlerFunc(menuHandler.AddMenu)))
 	router.Handle("/menu", http.HandlerFunc(menuHandler.GetAllMenu))
 
 	fmt.Println("Menu service listen on port :5000")
 	log.Panic(http.ListenAndServe(":5000", router))
+}
+
+func getConfig() (config.Config, error) {
+	viper.AddConfigPath(".")
+	viper.SetConfigType("yml")
+	viper.SetConfigName("config.yml")
+
+	if err := viper.ReadInConfig(); err != nil {
+		return config.Config{}, err
+	}
+
+	var cfg config.Config
+	err := viper.Unmarshal(&cfg)
+	if err != nil {
+		return config.Config{}, err
+	}
+
+	return cfg, nil
 }
 
 func initDB(dbConfig config.Database) (*gorm.DB, error) {
@@ -61,7 +70,7 @@ func initDB(dbConfig config.Database) (*gorm.DB, error) {
 	}
 
 	// Membuat tabel jika belum ada
-	err = db.AutoMigrate(database.Menu{})
+	err = db.AutoMigrate(&database.Menu{})
 	if err != nil {
 		return nil, err
 	}

@@ -19,7 +19,7 @@ type AuthMiddleware struct {
 // Menjalankan validasi dulu baru next handler
 func (auth *AuthMiddleware) ValidateAuth(nextHandler http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		request, err := http.NewRequest("POST", auth.AuthService.Host+"/admin-auth", nil)
+		request, err := http.NewRequest("POST", auth.AuthService.Host+"/auth/validate", nil)
 		if err != nil {
 			utils.WrapAPIError(w, r, "failed to create request : "+err.Error(), http.StatusInternalServerError)
 			return

@@ -8,10 +8,10 @@ import (
 )
 
 type Auth struct {
-	ID       string `gorm:"primary_key" json:"-" `
-	Username string `json:"username,onitempty"`
-	Password string `json:"password,onitempty"`
-	Token    string `json:"token,onitempty"`
+	ID       int    `gorm:"primary_key" json:"-" `
+	Username string `json:"username,omitempty"`
+	Password string `json:"password,omitempty"`
+	Token    string `json:"token,omitempty"`
 }
 
 func (auth *Auth) SignUp(db *gorm.DB) error {

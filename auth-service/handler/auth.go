@@ -44,7 +44,7 @@ func (db *AuthDB) SignUp(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	utils.WrapAPISuccess(w, r, "success1", 200)
+	utils.WrapAPISuccess(w, r, "success", 200)
 }
 
 func (db *AuthDB) Login(w http.ResponseWriter, r *http.Request) {
