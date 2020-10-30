@@ -1,8 +1,11 @@
 package handler
 
 import (
+	"encoding/json"
+	"io/ioutil"
 	"net/http"
 
+	"github.com/arfandidts/dts-be-pendalaman-microservice/auth-service/database"
 	"github.com/arfandidts/dts-be-pendalaman-microservice/utils"
 	"gorm.io/gorm"
 )
@@ -16,6 +19,31 @@ func (db *AuthDB) SignUp(w http.ResponseWriter, r *http.Request) {
 		utils.WrapAPIError(w, r, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
 		return
 	}
+
+	body, err := ioutil.ReadAll(r.Body)
+	defer r.Body.Close()
+	if err != nil {
+		utils.WrapAPIError(w, r, "can't read body", http.StatusBadRequest)
+		return
+	}
+
+	var signup database.Auth
+
+	err = json.Unmarshal(body, &signup)
+	if err != nil {
+		utils.WrapAPIError(w, r, "error unmarshal : "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	signup.Token = utils.IDGenerator()
+
+	err = menu.SignUp(db.Db)
+	if err != nil {
+		utils.WrapAPIError(w, r, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	utils.WrapAPISuccess(w, r, "success", 200)
 }
 
 func (db *AuthDB) Login(w http.ResponseWriter, r *http.Request) {
