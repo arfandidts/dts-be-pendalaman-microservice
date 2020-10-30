@@ -21,19 +21,20 @@ func main() {
 		log.Println(cfg)
 	}
 
-	db, err = initDB(cfg.Database)
+	db, err := initDB(cfg.Database)
 	if err != nil {
 		log.Println(err.Error())
 	} else {
 		log.Println("DB connection success")
 	}
 
-	authHandler := handler.AuthDB{Db: db}
+	authHandler := handler.AuthDB{DB: db}
 
 	router := mux.NewRouter()
 
-	router.Handle("/admin-auth", http.HandlerFunc(handler.ValidateAuth))
-	router.Handle("/auth/signup", http.HandlerFunc(handler.SignUp))
+	router.Handle("/auth.validate", http.HandlerFunc(authHandler.ValidateAuth))
+	router.Handle("/auth/signup", http.HandlerFunc(authHandler.SignUp))
+	router.Handle("/auth/login", http.HandlerFunc(authHandler.Login))
 
 	fmt.Printf("Auth service listen on :5001")
 	log.Panic(http.ListenAndServe(":5001", router))

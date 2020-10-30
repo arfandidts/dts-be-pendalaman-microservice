@@ -17,7 +17,7 @@ type Menu struct {
 // AddMenuHandler handle add menu
 func (handler *Menu) AddMenu(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
-		utils.WrapAPISuccess(w, r, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
+		utils.WrapAPIError(w, r, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
 	}
 
 	body, err := ioutil.ReadAll(r.Body)
