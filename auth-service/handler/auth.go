@@ -37,7 +37,7 @@ func (db *AuthDB) SignUp(w http.ResponseWriter, r *http.Request) {
 
 	signup.Token = utils.IdGenerator()
 
-	err = signup.SignUp(db.Db)
+	err = signup.SignUp(db.DB)
 	if err != nil {
 		utils.WrapAPIError(w, r, err.Error(), http.StatusInternalServerError)
 		return

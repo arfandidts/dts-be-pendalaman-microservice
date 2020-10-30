@@ -18,11 +18,6 @@ github.com/alecthomas/template v0.0.0-20160405071501-a0175ee3bccc/go.mod h1:LOuy
 github.com/alecthomas/units v0.0.0-20151022065526-2efee857e7cf/go.mod h1:ybxpYRFXyAe+OPACYpWeL0wqObRcbAqCMya13uyzqw0=
 github.com/arfandidts/dts-be-pendalaman-microservice v0.0.0-20201029223712-851c9f9211b1 h1:zlrkp2s/3zfFJN1z57AhXzQpdjcB3KA1ijTRmk5o+zI=
 github.com/arfandidts/dts-be-pendalaman-microservice v0.0.0-20201029223712-851c9f9211b1/go.mod h1:U6h2GZ8j75hm4WfhEP6yA1zzb85tOPFItm0SxMEne0c=
-github.com/arfandidts/dts-be-pengenalan-microservice v0.0.0-20201029115242-018bb36b2d05 h1:uirQUTVo1bQXZt7Q+P1cJivmAPAQsQfda7Vw0mwT8ic=
-github.com/arfandidts/dts-be-pengenalan-microservice v0.0.0-20201029115242-018bb36b2d05/go.mod h1:pb/7Nrh7Ge5LF+aShieBFUtlRRNK82H+I41fjhpmQVA=
-github.com/arfandidts/dts-be-pengenalan-microservice v0.0.0-20201029131811-5958d9141520 h1:YOZXH3Y0gr4YfxRWxf5sqxaDuFvdEe0L8s5Z1XwY5FY=
-github.com/arfandidts/dts-be-pengenalan-microservice/menu-service v0.0.0-20201029131811-5958d9141520 h1:4BWTYCHBsxrpj4msChxdgo0ZSIuZPbaZke/76iURz4g=
-github.com/arfandidts/dts-be-pengenalan-microservice/menu-service v0.0.0-20201029131811-5958d9141520/go.mod h1:7HA7PqX6uhG0+DhqtYsKQA1k00icykglkF8zCOA9Ivw=
 github.com/armon/circbuf v0.0.0-20150827004946-bbbad097214e/go.mod h1:3U/XgcO3hCbHZ8TKRvWD2dDTCfh9M9ya+I9JpbB7O8o=
 github.com/armon/go-metrics v0.0.0-20180917152333-f0300d1749da/go.mod h1:Q73ZrmVTwzkszR9V5SSuryQ31EELlFMUz1kKyl939pY=
 github.com/armon/go-radix v0.0.0-20180808171621-7fddfc383310/go.mod h1:ufUuZ+zHj4x4TnLV4JWEpy2hxWSpsRywHrMgIH9cCH8=
